@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portal do Aluno — Maximino · Studio Fit Personal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F7F4;--bg2:#F1F4F2;--card:#FFFFFF;--ink:#20242A;--ink2:#303741;--muted:#697280;--soft:#98A2B3;--line:#E6E4DF;--line2:#EEF0EA;--teal:#007C78;--teal2:#0A8F86;--tealDark:#075E56;--tealSoft:#E5F5F2;--mag:#C0265C;--mag2:#D44472;--magSoft:#FBE8F0;--green:#11845B;--greenSoft:#EAF8F0;--amber:#B7791F;--amberSoft:#FFF5DA;--red:#C2413A;--redSoft:#FDECEC;--shadow:0 20px 70px rgba(16,24,40,.10);--r:24px;--r2:18px;}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:"Manrope","DM Sans",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 5% 15%,rgba(0,124,120,.11),transparent 28%),radial-gradient(circle at 92% 5%,rgba(192,38,92,.10),transparent 26%),linear-gradient(135deg,#fff 0%,var(--bg) 52%,#F4F9F7 100%);line-height:1.5;-webkit-font-smoothing:antialiased}
+.page{max-width:1180px;margin:0 auto;padding:28px 22px 56px}
+.bg-mark{position:fixed;inset:0;pointer-events:none;opacity:.65;overflow:hidden;z-index:-1}
+.bg-mark:before{content:"";position:absolute;top:42px;left:-80px;width:260px;height:260px;border:1px solid rgba(0,124,120,.23);border-radius:50%}
+.bg-mark:after{content:"";position:absolute;right:-140px;bottom:-120px;width:360px;height:360px;border:1px solid rgba(192,38,92,.18);border-radius:50%}
+.brand{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 30px}
+.sf-symbol{width:64px;height:48px;display:grid;place-items:center;position:relative}
+.sf-symbol span{font-size:34px;line-height:1;letter-spacing:-5px;font-weight:800;background:linear-gradient(110deg,var(--teal),var(--teal2) 48%,var(--mag) 52%,var(--mag2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sf-symbol:after{content:"";position:absolute;width:58px;height:58px;border-radius:50%;border:1.5px solid rgba(0,124,120,.25);border-left-color:rgba(192,38,92,.45);transform:rotate(-18deg)}
+.brand-name{font-size:22px;font-weight:800;letter-spacing:8px;color:var(--tealDark);text-transform:uppercase}
+.brand-sub{margin-top:2px;font-size:12px;font-weight:800;letter-spacing:7px;color:var(--mag);text-transform:uppercase;text-align:center}
+.hero{min-height:690px;display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;gap:42px;padding:24px 0 34px}
+.hero-copy{padding-left:8px}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid rgba(0,124,120,.14);background:rgba(255,255,255,.72);border-radius:999px;color:var(--tealDark);font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;box-shadow:0 10px 30px rgba(16,24,40,.04)}
+.kicker i{width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,var(--teal),var(--mag));display:block}
+.hero h1{margin-top:28px;font-size:clamp(54px,7.5vw,92px);line-height:.94;letter-spacing:-4px;font-weight:800;color:var(--ink)}
+.hero h1 .teal{color:var(--teal)}.hero h1 .mag{color:var(--mag)}
+.hero .sub{max-width:480px;margin-top:30px;font-size:clamp(20px,2.2vw,28px);line-height:1.25;color:var(--ink2);font-weight:500}
+.hero .sub strong{color:var(--mag);font-weight:800}
+.feature-stack{margin-top:44px;display:grid;gap:26px}
+.feature{display:grid;grid-template-columns:58px 1fr;align-items:center;gap:16px}
+.icon{width:58px;height:58px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;color:var(--teal);background:rgba(255,255,255,.72)}
+.icon svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.feature:nth-child(2) .icon{color:var(--mag)}
+.feature-title{font-size:18px;color:var(--tealDark);font-weight:800;line-height:1.15}
+.feature:nth-child(2) .feature-title{color:var(--mag)}
+.feature-text{color:var(--muted);font-size:17px;line-height:1.25}
+.device-wrap{display:flex;justify-content:center;align-items:center}
+.device{width:min(100%,560px);border:14px solid #22272E;border-radius:34px;background:#22272E;box-shadow:var(--shadow);transform:rotate(-2deg)}
+.screen{border-radius:22px;overflow:hidden;background:#FDFDFC;min-height:590px;border:1px solid rgba(255,255,255,.7)}
+.screen-head{padding:24px;background:radial-gradient(circle at 92% 10%,rgba(192,38,92,.13),transparent 26%),linear-gradient(135deg,#FFFFFF 0%,#F6FBFA 100%);border-bottom:1px solid var(--line2)}
+.screen-user{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.user-meta small{display:block;color:var(--soft);font-weight:800;letter-spacing:.7px;text-transform:uppercase;font-size:10px}
+.user-meta h2{margin-top:4px;color:var(--ink);font-size:20px;letter-spacing:-.6px;line-height:1.08}
+.status-pill{display:flex;align-items:center;gap:8px;color:var(--amber);background:var(--amberSoft);border:1px solid rgba(183,121,31,.18);padding:9px 12px;border-radius:999px;white-space:nowrap;font-size:12px;font-weight:800}
+.status-pill span{width:8px;height:8px;background:var(--amber);border-radius:50%}
+.metric-row{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mini-card{padding:16px 14px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 8px 20px rgba(16,24,40,.045)}
+.mini-label{font-size:11px;color:var(--muted);font-weight:800;margin-bottom:8px}
+.mini-val{font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--amber)}
+.mini-sub{font-size:11px;color:var(--soft);font-weight:700}
+.screen-body{padding:20px 24px 24px}
+.victory{background:linear-gradient(135deg,var(--tealDark),#087C73);color:#fff;border-radius:22px;padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 12px 30px rgba(7,94,86,.16)}
+.victory-icon{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.13);flex:none}
+.victory h3{font-size:16px;line-height:1.16}
+.victory p{margin-top:4px;font-size:12px;color:rgba(255,255,255,.80)}
+.body-grid{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.composition{border:1px solid var(--line);border-radius:20px;padding:17px;background:#fff}
+.composition h4,.risk h4,.recent h4{font-size:13px;color:var(--ink);margin-bottom:12px}
+.donut{width:94px;height:94px;border-radius:50%;background:conic-gradient(var(--teal) 0 74.63%,var(--amber) 74.63% 100%);display:grid;place-items:center;margin:auto}
+.donut:before{content:"";width:58px;height:58px;border-radius:50%;background:#fff}
+.legend{margin-top:12px;display:grid;gap:7px;font-size:11px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:8px;height:8px;border-radius:50%;display:block}
+.risk{border-radius:20px;padding:17px;background:linear-gradient(135deg,#7A5200,var(--amber));color:#fff}
+.risk h4{color:#fff}.risk .risk-big{font-size:20px;font-weight:800;margin:4px 0 8px}
+.risk p{font-size:12px;color:rgba(255,255,255,.80)}
+.recent{margin-top:14px;border:1px solid var(--line);border-radius:20px;padding:16px;background:#fff}
+.recent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.recent-card{border:1px solid var(--line2);border-radius:14px;padding:12px 10px;text-align:center;background:#fff}
+.recent-card b{display:block;color:var(--teal);font-size:16px}
+.recent-card span{font-size:10px;color:var(--muted);font-weight:700}
+.hero-bottom{margin-top:16px;text-align:center;font-size:13px;letter-spacing:8px;color:var(--tealDark);font-weight:800;text-transform:uppercase}
+.hero-line{height:1px;max-width:720px;margin:24px auto 0;background:linear-gradient(90deg,transparent,rgba(0,124,120,.45),transparent)}
+.tagline{margin-top:18px;text-align:center;color:var(--muted);letter-spacing:2px;font-size:13px}
+.tagline strong{color:var(--mag)}
+.sticky-nav{position:sticky;top:0;z-index:20;margin:18px auto 0;max-width:920px;display:flex;justify-content:center;gap:6px;padding:8px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);box-shadow:0 8px 24px rgba(16,24,40,.05)}
+.tab{border:0;background:transparent;padding:12px 18px;border-radius:999px;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;transition:.18s}
+.tab.active{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;box-shadow:0 9px 24px rgba(0,124,120,.18)}
+.section{margin-top:28px;display:none}.section.active{display:block}
+.section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}
+.section-title h2{font-size:28px;letter-spacing:-.9px}
+.section-title p{color:var(--muted);max-width:420px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:rgba(255,255,255,.84);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:0 8px 24px rgba(16,24,40,.045)}
+.card-label{color:var(--soft);font-size:11px;letter-spacing:1.4px;font-weight:800;text-transform:uppercase}
+.card-value{margin-top:10px;font-size:36px;line-height:1;letter-spacing:-1.5px;font-weight:800}
+.card-value.green{color:var(--green)}.card-value.teal{color:var(--teal)}.card-value.mag{color:var(--mag)}.card-value.amber{color:var(--amber)}.card-value.red{color:var(--red)}
+.card-text{margin-top:10px;color:var(--muted);font-size:14px}
+.badge{margin-top:15px;display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:800}
+.badge.green{background:var(--greenSoft);color:var(--green);border:1px solid rgba(17,132,91,.13)}
+.badge.teal{background:var(--tealSoft);color:var(--tealDark);border:1px solid rgba(0,124,120,.14)}
+.badge.amber{background:var(--amberSoft);color:var(--amber);border:1px solid rgba(183,121,31,.14)}
+.badge.red{background:var(--redSoft);color:var(--red);border:1px solid rgba(194,65,58,.14)}
+.highlight{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}
+.big-win h3{font-size:22px;letter-spacing:-.5px;margin-top:10px;line-height:1.2}
+.big-win h3 span{color:var(--teal)}.big-win p{margin-top:10px;color:var(--muted);font-size:15px}
+.comp-table{width:100%;border-collapse:collapse}
+.comp-table th{text-align:left;font-size:11px;letter-spacing:1.4px;font-weight:800;color:var(--soft);text-transform:uppercase;padding:0 0 14px}
+.comp-table td{padding:13px 0;border-bottom:1px solid var(--line2);font-size:14px;color:var(--muted)}
+.comp-table td:last-child{text-align:right;font-size:16px;font-weight:800;color:var(--ink)}
+.comp-table tr:last-child td{border-bottom:0}
+.comp-table td.red{color:var(--red)}.comp-table td.teal{color:var(--teal)}.comp-table td.amber{color:var(--amber)}
+.win-list{display:grid;gap:12px}
+.win{display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:16px;padding:18px;border:1px solid var(--line);border-radius:22px;background:#fff}
+.win-ico{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;color:var(--teal);background:var(--tealSoft)}
+.win-ico.amber{color:var(--amber);background:var(--amberSoft)}
+.win-ico.red{color:var(--red);background:var(--redSoft)}
+.win-ico svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.win h3{font-size:18px;letter-spacing:-.3px}.win p{font-size:14px;color:var(--muted);margin-top:2px}
+.win b{font-size:26px;letter-spacing:-1px;white-space:nowrap;color:var(--teal)}
+.win b.amber{color:var(--amber)}.win b.red{color:var(--red)}
+.alert-box{margin-top:16px;padding:20px;border-radius:var(--r2);background:var(--amberSoft);border:1px solid rgba(183,121,31,.22)}
+.alert-box h3{color:var(--amber);font-size:18px;font-weight:800;margin-bottom:8px}
+.alert-box p{color:var(--muted);font-size:14px;line-height:1.6}
+.potential-box{margin-top:16px;padding:20px;border-radius:var(--r2);background:var(--tealSoft);border:1px solid rgba(0,124,120,.18)}
+.potential-box h3{color:var(--tealDark);font-size:18px;font-weight:800;margin-bottom:8px}
+.potential-box p{color:var(--muted);font-size:14px;line-height:1.6}
+.footer{margin-top:34px;padding:32px 0 4px;text-align:center;color:var(--muted)}
+.footer b{color:var(--tealDark)}
+.footer-line{width:min(720px,88%);height:1px;background:linear-gradient(90deg,transparent,rgba(0,124,120,.34),rgba(192,38,92,.30),transparent);margin:0 auto 20px}
+@media(max-width:980px){.hero{grid-template-columns:1fr;gap:22px;min-height:unset}.hero-copy{padding-left:0}.device{max-width:640px;transform:none}.grid-4{grid-template-columns:repeat(2,1fr)}.highlight{grid-template-columns:1fr}}
+@media(max-width:680px){.page{padding:18px 14px 38px}.brand{margin-bottom:16px}.brand-name{font-size:17px;letter-spacing:5px}.brand-sub{font-size:10px;letter-spacing:5px}.hero h1{font-size:58px;letter-spacing:-3px}.hero .sub{font-size:20px}.feature-stack{gap:18px;margin-top:32px}.feature{grid-template-columns:48px 1fr}.icon{width:48px;height:48px}.feature-title{font-size:16px}.feature-text{font-size:15px}.device{border-width:9px;border-radius:26px}.screen{border-radius:17px;min-height:auto}.metric-row{grid-template-columns:1fr}.body-grid{grid-template-columns:1fr}.recent-grid{grid-template-columns:1fr}.sticky-nav{justify-content:flex-start;overflow-x:auto;border-radius:20px}.tab{white-space:nowrap;padding:10px 14px}.grid-4,.grid-3{grid-template-columns:1fr}.win{grid-template-columns:48px 1fr}.win b{grid-column:2;font-size:22px}.section-title{display:block}.section-title p{margin-top:8px}}
+</style>
+</head>
+<body>
+<div class="bg-mark"></div>
+<main class="page">
+
+  <header class="brand">
+    <div class="sf-symbol"><span>SF</span></div>
+    <div class="brand-text">
+      <div class="brand-name">Studio Fit</div>
+      <div class="brand-sub">Personal</div>
+    </div>
+  </header>
+
+  <section class="hero" id="topo">
+    <div class="hero-copy">
+      <div class="kicker"><i></i> Portal do Aluno</div>
+      <h1>Quem não <span class="teal">monitora,</span><br><span class="mag">adivinha.</span></h1>
+      <p class="sub">Aqui, sua evolução é <strong>medida de verdade.</strong></p>
+      <div class="feature-stack">
+        <div class="feature">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><div class="feature-title">Acompanhamento</div><div class="feature-text">individualizado e próximo</div></div>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/><path d="M17 7h2v2"/></svg></div>
+          <div><div class="feature-title">Monitoramento</div><div class="feature-text">inteligente e contínuo</div></div>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/><circle cx="12" cy="12" r="10"/></svg></div>
+          <div><div class="feature-title">Resultados reais</div><div class="feature-text">que você vê e sente</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="device-wrap">
+      <div class="device">
+        <div class="screen">
+          <div class="screen-head">
+            <div class="screen-user">
+              <div class="user-meta">
+                <small>Olá, Maximino</small>
+                <h2>Diagnóstico Mai/2026<br>Modo A · Redução de gordura</h2>
+              </div>
+              <div class="status-pill"><span></span>Início</div>
+            </div>
+            <div class="metric-row">
+              <div class="mini-card"><div class="mini-label">% Gordura</div><div class="mini-val">25,37%</div><div class="mini-sub">Meta: 14%</div></div>
+              <div class="mini-card"><div class="mini-label">Cintura</div><div class="mini-val">98cm</div><div class="mini-sub">Risco OMS</div></div>
+              <div class="mini-card"><div class="mini-label">Massa magra</div><div class="mini-val">63,36kg</div><div class="mini-sub">Boa base p/ 66 anos</div></div>
+            </div>
+          </div>
+          <div class="screen-body">
+            <div class="victory">
+              <div class="victory-icon"><svg width="22" height="22" viewBox="0 0 24 24" stroke="white" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <div><h3>Diagnóstico inicial — ponto de partida mapeado</h3><p>63,36kg de massa magra aos 66 anos é um patrimônio. O foco é reduzir gordura sem abrir mão disso.</p></div>
+            </div>
+            <div class="body-grid">
+              <div class="composition">
+                <h4>Composição corporal</h4>
+                <div class="donut"></div>
+                <div class="legend">
+                  <span><i style="background:var(--teal)"></i>Massa magra: 63,36kg</span>
+                  <span><i style="background:var(--amber)"></i>Gordura: 21,54kg</span>
+                  <span><i style="background:var(--green)"></i>Meta: 14% gordura</span>
+                </div>
+              </div>
+              <div class="risk"><h4>Zona de risco</h4><div class="risk-big">RISCO AUMENTADO</div><p>Cintura 98cm — acima do limiar de risco aumentado OMS para homens (94cm).</p></div>
+            </div>
+            <div class="recent">
+              <h4>Pontos de partida</h4>
+              <div class="recent-grid">
+                <div class="recent-card"><b>84,9kg</b><span>Peso</span></div>
+                <div class="recent-card"><b>63,36kg</b><span>Massa magra</span></div>
+                <div class="recent-card"><b>98cm</b><span>Cintura</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hero-bottom">Acompanhamento • Monitoramento • Resultados reais</div>
+  <div class="hero-line"></div>
+  <div class="tagline">Inteligência. Método. <strong>Resultados reais.</strong></div>
+
+  <nav class="sticky-nav">
+    <button class="tab active" onclick="showSection('resumo',this)">Resumo</button>
+    <button class="tab" onclick="showSection('composicao',this)">Composição</button>
+    <button class="tab" onclick="showSection('diagnostico',this)">Diagnóstico</button>
+    <button class="tab" onclick="showSection('metas',this)">Metas</button>
+  </nav>
+
+  <!-- RESUMO -->
+  <section class="section active" id="resumo">
+    <div class="section-title"><div><h2>Diagnóstico inicial</h2><p>O mapa completo do ponto de partida — base para todas as decisões do programa.</p></div></div>
+    <div class="grid-4">
+      <div class="card"><div class="card-label">Cintura atual</div><div class="card-value amber">98cm</div><p class="card-text">Acima do limiar de risco aumentado OMS para homens (94cm).</p><span class="badge amber">Risco aumentado</span></div>
+      <div class="card"><div class="card-label">% Gordura</div><div class="card-value amber">25,37%</div><p class="card-text">Elevado para 66 anos. Meta proposta: 14% — programa estruturado para isso.</p><span class="badge amber">Meta: 14%</span></div>
+      <div class="card"><div class="card-label">Massa magra</div><div class="card-value teal">63,36kg</div><p class="card-text">Expressivo para 66 anos — patrimônio muscular a ser preservado e fortalecido.</p><span class="badge teal">Diferencial</span></div>
+      <div class="card"><div class="card-label">Modo definido</div><div class="card-value amber">A</div><p class="card-text">Redução de gordura prioritária. Força como eixo de preservação muscular.</p><span class="badge amber">Ativo</span></div>
+    </div>
+    <div class="highlight">
+      <div class="card big-win">
+        <div class="card-label">Leitura clínica do diagnóstico</div>
+        <h3>Gordura no tronco — mas <span>base muscular preservada.</span></h3>
+        <p>Maximino tem 63,36kg de massa magra aos 66 anos — resultado de quem manteve o corpo ativo ao longo da vida. É um diferencial real: a maioria dos homens nessa faixa etária já perdeu massa muscular de forma significativa. O problema está nos 21,54kg de gordura concentrados no abdômen (100cm) e na cintura (98cm), que colocam o RCQ em 0,99 — próximo do limiar crítico. O programa protege o músculo e reduz a gordura com precisão.</p>
+        <span class="badge teal">Patrimônio muscular a proteger</span>
+      </div>
+      <div class="card">
+        <div class="card-label">Próximo marco</div>
+        <div class="card-value teal">Ago/2026</div>
+        <p class="card-text">Primeira reavaliação. Meta: cintura abaixo de 94cm e % gordura abaixo de 22%.</p>
+        <span class="badge teal">Próxima avaliação: Ago/2026</span>
+      </div>
+    </div>
+    <div class="alert-box">
+      <h3>⚠ Classificação OMS — Risco Aumentado</h3>
+      <p>Cintura de 98cm ultrapassa o limiar de risco aumentado da OMS para homens (94cm) e se aproxima do limiar crítico (102cm). RCQ de 0,99 está no limite do moderado. IMC de 26,20 indica excesso de peso. O programa atua diretamente na redução da gordura abdominal — o marcador de risco mais relevante para homens de 66 anos.</p>
+    </div>
+    <div class="potential-box">
+      <h3>✓ Diferencial do Maximino — 63,36kg de massa magra aos 66 anos</h3>
+      <p>Poucos homens chegam aos 66 anos com essa base muscular. Músculo preservado significa metabolismo mais ativo, melhor resposta ao treino de força e proteção contra sarcopenia. Esse patrimônio é o que torna a reversão do quadro mais rápida e sustentável. O programa é construído para não desperdiçar isso.</p>
+    </div>
+  </section>
+
+  <!-- COMPOSIÇÃO -->
+  <section class="section" id="composicao">
+    <div class="section-title"><div><h2>Composição corporal</h2><p>Mapa completo da composição no diagnóstico inicial — Mai/2026.</p></div></div>
+    <div class="grid-3">
+      <div class="card"><div class="card-label">Massa magra</div><div class="card-value teal">63,36kg</div><p class="card-text">Expressivo para 66 anos. Preservar e fortalecer é a prioridade inegociável.</p><span class="badge teal">Diferencial</span></div>
+      <div class="card"><div class="card-label">Massa gorda</div><div class="card-value amber">21,54kg</div><p class="card-text">Concentrada no tronco — abdômen 100cm, cintura 98cm.</p><span class="badge amber">Foco do programa</span></div>
+      <div class="card"><div class="card-label">RCQ</div><div class="card-value amber">0,99</div><p class="card-text">Próximo do limiar crítico. Meta: abaixo de 0,90 com redução da cintura.</p><span class="badge amber">Moderado</span></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-label">Perimetria completa — Mai/2026</div>
+      <div style="margin-top:16px">
+        <table class="comp-table">
+          <tr><th>Medida</th><th></th></tr>
+          <tr><td>Peso</td><td class="amber">84,9kg</td></tr>
+          <tr><td>Cintura</td><td class="amber">98cm</td></tr>
+          <tr><td>Abdômen</td><td class="amber">100cm</td></tr>
+          <tr><td>Anca</td><td>99cm</td></tr>
+          <tr><td>Ombro</td><td class="teal">112cm</td></tr>
+          <tr><td>Tórax</td><td class="teal">104cm</td></tr>
+          <tr><td>Braço D/E</td><td class="teal">32cm</td></tr>
+          <tr><td>Coxa D/E</td><td class="teal">55cm</td></tr>
+          <tr><td>IMC</td><td class="amber">26,20</td></tr>
+          <tr><td>RCQ</td><td class="amber">0,99 Moderado</td></tr>
+          <tr><td>% Gordura</td><td class="amber">25,37%</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNÓSTICO -->
+  <section class="section" id="diagnostico">
+    <div class="section-title"><div><h2>Análise clínica</h2><p>O que os dados mostram e o que o programa vai fazer com eles.</p></div></div>
+    <div class="win-list">
+      <div class="win">
+        <div class="win-ico amber"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div><h3>Cintura em risco aumentado OMS</h3><p>98cm — 4cm acima do limiar de risco aumentado (94cm) e 4cm abaixo do crítico (102cm). Zona de intervenção prioritária.</p></div>
+        <b class="amber">98cm</b>
+      </div>
+      <div class="win">
+        <div class="win-ico amber"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div><h3>RCQ próximo do limiar crítico</h3><p>0,99 — para homens, acima de 1,0 é risco alto. O programa atua diretamente para reduzir esse índice.</p></div>
+        <b class="amber">0,99</b>
+      </div>
+      <div class="win">
+        <div class="win-ico"><svg viewBox="0 0 24 24"><path d="M7 14c-2 0-3-1-3-3s2-5 5-7c1 3 3 4 6 4h1a4 4 0 0 1 0 8H9"/><path d="M7 14v5"/><path d="M17 14v5"/><path d="M7 19h10"/></svg></div>
+        <div><h3>Massa magra — vantagem real aos 66 anos</h3><p>63,36kg de músculo é patrimônio. A maioria dos homens dessa idade já perdeu muito mais. Preservar é tão importante quanto reduzir gordura.</p></div>
+        <b>63,36kg</b>
+      </div>
+      <div class="win">
+        <div class="win-ico amber"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div>
+        <div><h3>Excesso de peso — janela aberta</h3><p>IMC de 26,20 — excesso de peso leve. Não há obesidade instalada. A intervenção agora evita o agravamento.</p></div>
+        <b class="amber">26,20</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- METAS -->
+  <section class="section" id="metas">
+    <div class="section-title"><div><h2>Metas do programa</h2><p>Objetivos definidos para Ago/2026 e para o final do programa.</p></div></div>
+    <div class="win-list">
+      <div class="win">
+        <div class="win-ico amber"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><h3>Cintura abaixo de 94cm — Ago/2026</h3><p>Sair da zona de risco aumentado OMS. Meta de curto prazo: reduzir 4cm até a próxima avaliação.</p></div>
+        <b class="amber">98cm</b>
+      </div>
+      <div class="win">
+        <div class="win-ico amber"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div><h3>% gordura abaixo de 22% — Ago/2026</h3><p>Redução progressiva saindo dos 25,37% atuais. Meta final: 14% de gordura corporal.</p></div>
+        <b class="amber">25,37%</b>
+      </div>
+      <div class="win">
+        <div class="win-ico"><svg viewBox="0 0 24 24"><path d="M7 14c-2 0-3-1-3-3s2-5 5-7c1 3 3 4 6 4h1a4 4 0 0 1 0 8H9"/><path d="M7 14v5"/><path d="M17 14v5"/><path d="M7 19h10"/></svg></div>
+        <div><h3>Massa magra mantida ou crescendo</h3><p>63,36kg é o piso. Força é o único estímulo que protege o músculo aos 66 anos — sem negociação.</p></div>
+        <b>≥63,36kg</b>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-label">Metas por etapa</div>
+      <div class="grid-3" style="margin-top:16px">
+        <div><div class="card-value amber">&lt;94cm</div><p class="card-text">Cintura saindo do risco aumentado — Ago/2026.</p></div>
+        <div><div class="card-value amber">&lt;22%</div><p class="card-text">% gordura em queda consistente — Ago/2026.</p></div>
+        <div><div class="card-value teal">≥63kg</div><p class="card-text">Massa magra protegida — inegociável.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-line"></div>
+    <p><b>Studio Fit Personal</b> · Sistema Vitalidade Inteligente 40+™</p>
+    <p>Sherley Ferreira · Método, acompanhamento e resultados reais.</p>
+  </footer>
+
+</main>
+<script>
+function showSection(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  const nav=document.querySelector('.sticky-nav');
+  const y=nav.getBoundingClientRect().top+window.scrollY-12;
+  window.scrollTo({top:y,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
